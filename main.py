@@ -35,7 +35,7 @@ def convert_xml_to_json(xml_file, mapping, json_file):
             for key in keys[:-1]:
                 d = d.setdefault(key, {})
             if element is not None:
-                d[keys[-1]] = element.text
+                d[keys[-1]] = element.text.replace('&', '')
             else:
                 d[keys[-1]] = ""
                 if xml_path:
