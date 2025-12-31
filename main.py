@@ -24,7 +24,7 @@ def convert_xml_to_json(xml_file, mapping, json_file):
         tree = ET.parse(xml_file)
         root = tree.getroot()
 
-        with open(mapping, 'r') as f:
+        with open(mapping, 'r', encoding='utf-8') as f:
             conversion_map = json.load(f)
 
         output_data = {}
@@ -41,8 +41,8 @@ def convert_xml_to_json(xml_file, mapping, json_file):
                 if xml_path:
                     print("\033[93m", f"Warning: XML path not found: {xml_path}", "\033[93m")
 
-        with open(json_file, 'w') as f:
-            json.dump(output_data, f, indent=2)
+        with open(json_file, 'w', encoding='utf-8') as f:
+            json.dump(output_data, f, indent=2, ensure_ascii=False)
         print("\033[92m", f"Successfully converted {xml_file} to {json_file}", "\033[92m")
 
     except FileNotFoundError as e:
